@@ -1,31 +1,29 @@
-import { useFormContext } from "react-hook-form";
+import { InputField } from "./UI/InputField";
 
 export function PersonalInfo() {
-  const { register } = useFormContext();
-
   return (
     <fieldset>
       <legend>Personal Info</legend>
-      <label htmlFor="name">Name</label>
-      <input
-        type="text"
+      <InputField
         id="name"
+        type="text"
+        label="Name"
         placeholder="Joe Smith"
-        {...register("name", { required: true })}
+        required
       />
-      <label htmlFor="email">Email adress</label>
-      <input
-        type="email"
+      <InputField
         id="email"
+        type="email"
+        label="Email adress"
         placeholder="joe.smith@example.com"
-        {...register("email", { required: true })}
+        required
       />
-      <label htmlFor="phone">Phone number</label>
-      <input
-        type="tel"
+      <InputField
         id="phone"
+        type="tel"
+        label="Phone number"
         placeholder="+1234567890"
-        {...register("phone", { required: true })}
+        required
       />
     </fieldset>
   );

@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
 
-type FormData = {
+export type MultiFormData = {
   personalInfo: {
     name: string;
     email: string;
@@ -16,11 +16,14 @@ type FormData = {
 };
 
 type MultiFormContextProps = {
-  formData: FormData;
-  setFormData: (data: Partial<FormData>) => void;
+  formData: MultiFormData;
+  setFormData: (data: Partial<MultiFormData>) => void;
   currentStep: number;
   handleNext: () => void;
   handlePrev: () => void;
+  defaultValues: MultiFormData;
+  maxSteps: number;
+  steps: string[];
 };
 
 const MultiFormContext = createContext({} as MultiFormContextProps);
@@ -32,7 +35,7 @@ export const useMultiForm = () => {
   return context;
 };
 
-const defaultValues: FormData = {
+const defaultValues: MultiFormData = {
   personalInfo: {
     name: "",
     email: "",
@@ -51,7 +54,7 @@ type MultiFormProviderProps = {
 
 export const MultiFormProvider = ({ children }: MultiFormProviderProps) => {
   const [currentStep, setCurrentStep] = useState(1);
-  const [formData, setFormDataState] = useState<FormData>(defaultValues);
+  const [formData, setFormDataState] = useState<MultiFormData>(defaultValues);
 
   const steps = [
     "personalinfo",
@@ -60,24 +63,34 @@ export const MultiFormProvider = ({ children }: MultiFormProviderProps) => {
     "summary",
     "thankyou",
   ];
+  const MAX_STEPS = 5;
 
   const handleNext = () => {
     if (currentStep < steps.length) {
       setCurrentStep((prev) => prev + 1);
+      setFormData({ ...formData });
     }
-    if (currentStep === 4) console.log({ formData });
   };
 
   const handlePrev = () => {
     setCurrentStep((prev) => prev - 1);
   };
 
-  const setFormData = (data: Partial<FormData>) =>
+  const setFormData = (data: Partial<MultiFormData>) =>
     setFormDataState((prev) => ({ ...prev, ...data }));
 
   return (
     <MultiFormContext.Provider
-      value={{ formData, setFormData, currentStep, handleNext, handlePrev }}
+      value={{
+        formData,
+        setFormData,
+        currentStep,
+        handleNext,
+        handlePrev,
+        defaultValues,
+        maxSteps: MAX_STEPS,
+        steps,
+      }}
     >
       {children}
     </MultiFormContext.Provider>
