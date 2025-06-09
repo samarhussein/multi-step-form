@@ -13,16 +13,19 @@ export function InputField({ id, label, ...props }: InputFieldProps) {
   } = useFormContext();
 
   return (
-    <>
-      <label htmlFor={id}>{label}</label>
+    <div>
+      <label htmlFor={id} className="text-blue-900">
+        {label}
+      </label>
       <input
         id={id}
         {...props}
         {...register(id, {
           required: { value: true, message: `Please provide ${label}` },
         })}
+        className="w-full px-4 py-2 border rounded-md border-gray-400"
       />
       <p>{(errors[id] as FieldError)?.message}</p>
-    </>
+    </div>
   );
 }
