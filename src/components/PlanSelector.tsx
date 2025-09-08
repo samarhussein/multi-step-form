@@ -16,6 +16,15 @@ export function PlanSelector() {
       <input type="radio" id="monthly" name="plan-period" />
       <label htmlFor="yearly">yearly</label>
       <input type="radio" id="yearly" name="plan-period" />
+      <button
+        type="button"
+        data-action="aria-switch"
+        aria-labelledby="toggle_label"
+        aria-checked="false"
+        role="switch"
+      >
+        <span>press</span>
+      </button>
     </fieldset>
   );
 }

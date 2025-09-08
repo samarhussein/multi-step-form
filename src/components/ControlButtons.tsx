@@ -17,13 +17,9 @@ export function ControlButtons() {
 
   if (currentStep > 4) return undefined;
   return (
-    <footer className="flex justify-between">
+    <footer className="">
       {currentStep > 1 && (
-        <button
-          type="button"
-          onClick={handlePrev}
-          className="px-4 py-2 text-gray-700 cursor-pointer"
-        >
+        <button type="button" onClick={handlePrev} className="">
           Go back
         </button>
       )}
@@ -33,7 +29,7 @@ export function ControlButtons() {
           disabled={!isValid}
           type="button"
           onClick={handleConfirm}
-          className="px-4 py-2 bg-blue-900 text-white border rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 cursor-pointer"
+          className=""
         >
           Confirm
         </button>
@@ -42,7 +38,7 @@ export function ControlButtons() {
           disabled={!isValid}
           type="button"
           onClick={handleNext}
-          className="px-4 py-2 bg-blue-900 text-white border rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 cursor-pointer  float-end"
+          className=""
         >
           Next step
         </button>

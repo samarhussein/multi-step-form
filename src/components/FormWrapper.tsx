@@ -14,12 +14,9 @@ export function FormWrapper() {
 
   return (
     <FormProvider {...methods}>
-      <div className="flex min-h-screen">
+      <div className="container">
         <Siderbar />
-        <form
-          onSubmit={(e) => e.preventDefault()}
-          className="flex-1 px-40 pt-15 bg-white flex flex-col justify-between mb-10"
-        >
+        <form onSubmit={(e) => e.preventDefault()} className="">
           {currentStep === 1 && <PersonalInfo />}
           {currentStep === 2 && <PlanSelector />}
           {currentStep === 3 && <AddOns />}

@@ -2,11 +2,9 @@ import { InputField } from "./UI/InputField";
 
 export function PersonalInfo() {
   return (
-    <fieldset className="flex flex-col gap-3">
-      <legend className="text-2xl text-blue-900">Personal Info</legend>
-      <p className="text-gray-600 mt-3 mb-8">
-        Please provide your name, email adress, and phone number.
-      </p>
+    <fieldset>
+      <legend>Personal Info</legend>
+      <p>Please provide your name, email adress, and phone number.</p>
       <InputField
         id="name"
         type="text"
