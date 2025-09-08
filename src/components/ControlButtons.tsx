@@ -1,5 +1,6 @@
 import { useFormContext } from "react-hook-form";
 import { type MultiFormData, useMultiForm } from "../context/MultiFormContext";
+import { Button } from "./UI/Button";
 
 export function ControlButtons() {
   const { currentStep, handleNext, handlePrev } = useMultiForm();
@@ -17,31 +18,30 @@ export function ControlButtons() {
 
   if (currentStep > 4) return undefined;
   return (
-    <footer className="">
+    <footer className="form-footer">
       {currentStep > 1 && (
-        <button type="button" onClick={handlePrev} className="">
-          Go back
-        </button>
+        <Button
+          type="button"
+          onClick={handlePrev}
+          variant="secondary"
+          title="Go back"
+        ></Button>
       )}
 
       {currentStep === 4 ? (
-        <button
+        <Button
           disabled={!isValid}
           type="button"
           onClick={handleConfirm}
-          className=""
-        >
-          Confirm
-        </button>
+          title="Confirm"
+        ></Button>
       ) : (
-        <button
+        <Button
+          title="Next step"
           disabled={!isValid}
           type="button"
           onClick={handleNext}
-          className=""
-        >
-          Next step
-        </button>
+        ></Button>
       )}
     </footer>
   );

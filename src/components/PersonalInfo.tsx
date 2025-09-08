@@ -4,7 +4,9 @@ export function PersonalInfo() {
   return (
     <fieldset>
       <legend>Personal Info</legend>
-      <p>Please provide your name, email adress, and phone number.</p>
+      <p className="description">
+        Please provide your name, email adress, and phone number.
+      </p>
       <InputField
         id="name"
         type="text"

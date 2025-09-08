@@ -21,11 +21,17 @@ export function InputField({ id, label, ...props }: InputFieldProps) {
         id={id}
         {...props}
         {...register(id, {
-          required: { value: true, message: `Please provide ${label}` },
+          required: { value: true, message: `This field is required` },
         })}
-        className="input"
+        className={`input ${errors[id] ? "danger" : ""}`}
+        aria-invalid={errors[id] ? "true" : "false"}
+        aria-describedby={errors[id] ? `${id}-error` : undefined}
       />
-      {errors && errors[id] && <p>{(errors[id] as FieldError)?.message}</p>}
+      {errors && errors[id] && (
+        <span className="error-message" id={`${id}-error`} role="alert">
+          {(errors[id] as FieldError)?.message}
+        </span>
+      )}
     </div>
   );
 }
